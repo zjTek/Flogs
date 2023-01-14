@@ -46,11 +46,13 @@ class FlogDao {
 
   /// Deletes the `log` from Database
   Future delete(Log log) async {
-    final finder = Finder(filter: Filter.byKey(log.id));
-    await _flogsStore.delete(
-      await _db,
-      finder: finder,
-    );
+    if (log.id != null) {
+      final finder = Finder(filter: Filter.byKey(log.id!!));
+      await _flogsStore.delete(
+        await _db,
+        finder: finder,
+      );
+    }
   }
 
   /// Deletes all Logs from Database which match the given `filters`.
