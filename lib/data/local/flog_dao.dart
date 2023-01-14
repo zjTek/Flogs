@@ -34,12 +34,14 @@ class FlogDao {
   Future update(Log log) async {
     // For filtering by key (ID), RegEx, greater than, and many other criteria,
     // we use a Finder.
-    final finder = Finder(filter: Filter.byKey(log.id));
-    await _flogsStore.update(
-      await _db,
-      log.toJson(),
-      finder: finder,
-    );
+    if (log.id != null) {
+      final finder = Finder(filter: Filter.byKey(log.id));
+      await _flogsStore.update(
+        await _db,
+        log.toJson(),
+        finder: finder,
+      );
+    }
   }
 
   /// Deletes the `log` from Database
