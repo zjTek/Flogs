@@ -35,7 +35,7 @@ class FlogDao {
     // For filtering by key (ID), RegEx, greater than, and many other criteria,
     // we use a Finder.
     if (log.id != null) {
-      final finder = Finder(filter: Filter.byKey(log.id));
+      final finder = Finder(filter: Filter.byKey(log.id!!));
       await _flogsStore.update(
         await _db,
         log.toJson(),
